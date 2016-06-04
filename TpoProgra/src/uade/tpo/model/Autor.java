@@ -3,8 +3,8 @@ package uade.tpo.model;
 import uade.tpo.tda.LibroTDA;
 
 public class Autor {
-	String nombre;
-	LibroTDA libros;
+	private String nombre;
+	private LibroTDA libros;
 
 	public String getNombre() {
 		return nombre;

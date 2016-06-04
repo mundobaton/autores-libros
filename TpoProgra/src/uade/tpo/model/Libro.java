@@ -1,8 +1,8 @@
 package uade.tpo.model;
 
 public class Libro {
-	String titulo;
-	float precio;
+	private String titulo;
+	private float precio;
 
 	public String getTitulo() {
 		return titulo;
