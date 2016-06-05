@@ -1,10 +1,10 @@
 package uade.tpo.model;
 
-import uade.tpo.tda.LibroTDA;
+import uade.tpo.tda.LibrosAutorTDA;
 
 public class Autor {
 	private String nombre;
-	private LibroTDA libros;
+	private LibrosAutorTDA libros;
 
 	public String getNombre() {
 		return nombre;
@@ -14,11 +14,11 @@ public class Autor {
 		this.nombre = nombre;
 	}
 
-	public LibroTDA getLibros() {
+	public LibrosAutorTDA getLibros() {
 		return libros;
 	}
 
-	public void setLibros(LibroTDA libros) {
+	public void setLibros(LibrosAutorTDA libros) {
 		this.libros = libros;
 	}
 

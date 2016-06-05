@@ -1,7 +1,7 @@
 package uade.tpo.impl;
 
 import uade.tpo.tda.AutorTDA;
-import uade.tpo.tda.LibroTDA;
+import uade.tpo.tda.LibrosAutorTDA;
 
 public class AutorTDAImpl implements AutorTDA {
 
@@ -51,7 +51,7 @@ public class AutorTDAImpl implements AutorTDA {
 		
 	}
 
-	public LibroTDA GetLibros(String nombreAutor) {
+	public LibrosAutorTDA GetLibros(String nombreAutor) {
 		// TODO Auto-generated method stub
 		return null;
 	}
