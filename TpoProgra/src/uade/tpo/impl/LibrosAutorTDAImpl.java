@@ -31,8 +31,16 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 	}
 
 	public boolean LibroPertenece(String nombre) {
-		// TODO Auto-generated method stub
-		return false;
+		if (LibroVacio()) {
+			return false;
+		} else {
+			if (raiz.getTitulo().equals(nombre)) {
+				return true;
+			} else {
+				return raiz.getHd().LibroPertenece(nombre)
+						|| raiz.getHi().LibroPertenece(nombre);
+			}
+		}
 	}
 
 	public LibrosAutorTDA HijoIzquierdo() {
@@ -44,8 +52,7 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 	}
 
 	public void Eliminar(String nombre) {
-		// TODO Auto-generated method stub
-
+		// Este me la pego en el menton..:'(
 	}
 
 	public Libro Raiz() {

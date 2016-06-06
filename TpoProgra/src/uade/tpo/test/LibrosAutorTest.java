@@ -21,6 +21,10 @@ public class LibrosAutorTest {
 			input = reader.readLine();
 			if (input.equals("agregarLibro")) {
 				test.testAgregarLibro(reader);
+			} else if (input.equals("libroPertenece")) {
+				test.testLibroPertenece(reader);
+			} else {
+				System.out.println("Comando invalido..");
 			}
 			System.out.println("Ingrese el comando.. -1 para terminar..");
 		}
@@ -44,4 +48,11 @@ public class LibrosAutorTest {
 		librosAutor.Agregar(nombreLibro, precio);
 	}
 
+	public void testLibroPertenece(BufferedReader reader) throws IOException {
+		String nombreLibro;
+		System.out.println("Ingrese el nombre del libro:");
+		nombreLibro = reader.readLine();
+		System.out.println("El libro existe? "
+				+ librosAutor.LibroPertenece(nombreLibro));
+	}
 }
