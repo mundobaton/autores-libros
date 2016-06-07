@@ -30,10 +30,6 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 		}
 	}
 
-	public boolean LibroPertenece(String nombre) {
-		return buscarLibro(this, nombre) != null;
-	}
-
 	private Libro buscarLibro(LibrosAutorTDA libroTDA, String nombre) {
 		if (libroTDA.LibroVacio()) {
 			return null;

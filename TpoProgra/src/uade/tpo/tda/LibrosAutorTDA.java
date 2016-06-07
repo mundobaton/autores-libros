@@ -19,12 +19,6 @@ public interface LibrosAutorTDA {
 	public void Agregar(String nombre, float precio);
 
 	/**
-	 * Determina si un libro existe. TRUE existe, FALSE no existe.<br>
-	 * PRE: Estructura inicializada POS: -<br>
-	 */
-	public boolean LibroPertenece(String nombre);
-
-	/**
 	 * Devuelve el hijo izquierdo del árbol de libros<br>
 	 * PRE: Estructura inicializada y no vacia<br>
 	 * POS: -
