@@ -1,5 +1,7 @@
 package uade.tpo.tda;
 
+import uade.tpo.model.Autor;
+
 public interface AutorTDA {
 
 	/**
@@ -17,14 +19,7 @@ public interface AutorTDA {
 	public void Agregar(String nombreAutor);
 
 	/**
-	 * Determina si un autor existe. TRUE existe, FALSE no existe.<br>
-	 * PRE: Estructura inicializada<br>
-	 * POS: -
-	 */
-	public boolean AutorPertenece(String nombreAutor);
-
-	/**
-	 * Devuelve el hijo izquierdo del árbol de autor<br>
+	 * Devuelve el hijo izquierdo del ï¿½rbol de autor<br>
 	 * PRE: Estructura inicializada y no vacia<br>
 	 * POS: -
 	 */
@@ -49,7 +44,7 @@ public interface AutorTDA {
 	 * PRE: Estructura inicializada y no vacia<br>
 	 * POS: -
 	 */
-	public String Raiz();
+	public Autor Raiz();
 
 	/**
 	 * Determina si la estructura se encuentra vacia o no. TRUE: estructura
