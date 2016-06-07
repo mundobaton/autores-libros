@@ -22,7 +22,8 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 			libro.getHi().Inicializar();
 			raiz = libro;
 		} else {
-			if (raiz.getPrecio() > precio) {
+			// raiz.titulo > nombre
+			if (raiz.getTitulo().compareTo(nombre) > 0) {
 				raiz.getHi().Agregar(nombre, precio);
 			} else {
 				raiz.getHd().Agregar(nombre, precio);
@@ -52,7 +53,43 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 	}
 
 	public void Eliminar(String nombre) {
-		// Este me la pego en el menton..:'(
+		if (raiz != null) {
+			if (raiz.getTitulo().equals(nombre) && raiz.getHi().LibroVacio()
+					&& raiz.getHd().LibroVacio()) {
+				raiz = null;
+			} else {
+				if (raiz.getTitulo().equals(nombre)
+						&& !raiz.getHi().LibroVacio()) {
+					raiz = mayor(raiz.getHi());
+					raiz.getHi().Eliminar(raiz.getTitulo());
+				} else if (raiz.getTitulo().equals(nombre)
+						&& !raiz.getHd().LibroVacio()) {
+					raiz = menor(raiz.getHd());
+					raiz.getHd().Eliminar(raiz.getTitulo());
+				} else if (raiz.getTitulo().compareTo(nombre) > 0) {
+					raiz.getHi().Eliminar(nombre);
+				} else {
+					raiz.getHd().Eliminar(nombre);
+				}
+			}
+		}
+	}
+
+	private Libro mayor(LibrosAutorTDA libro) {
+		if (libro.HijoDerecho().LibroVacio()) {
+			return libro.Raiz();
+		} else {
+			return mayor(libro.HijoDerecho());
+		}
+
+	}
+
+	private Libro menor(LibrosAutorTDA libro) {
+		if (libro.HijoIzquierdo().LibroVacio()) {
+			return libro.Raiz();
+		} else {
+			return menor(libro.HijoIzquierdo());
+		}
 	}
 
 	public Libro Raiz() {

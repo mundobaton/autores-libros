@@ -23,6 +23,8 @@ public class LibrosAutorTest {
 				test.testAgregarLibro(reader);
 			} else if (input.equals("libroPertenece")) {
 				test.testLibroPertenece(reader);
+			} else if (input.equals("eliminarLibro")) {
+				test.testEliminarLibro(reader);
 			} else {
 				System.out.println("Comando invalido..");
 			}
@@ -34,6 +36,13 @@ public class LibrosAutorTest {
 
 	public LibrosAutorTest() {
 		this.librosAutor = new LibrosAutorTDAImpl();
+	}
+
+	public void testEliminarLibro(BufferedReader reader) throws IOException {
+		String nombreLibro;
+		System.out.println("Ingrese el nombre del libro:");
+		nombreLibro = reader.readLine();
+		librosAutor.Eliminar(nombreLibro);
 	}
 
 	public void testAgregarLibro(BufferedReader reader)
