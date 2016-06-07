@@ -22,6 +22,7 @@ public class AutorTDAImpl implements AutorTDA {
 
 	public AutorTDA HijoIzquierdo() {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
