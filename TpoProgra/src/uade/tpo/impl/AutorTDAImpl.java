@@ -5,114 +5,125 @@ import uade.tpo.tda.AutorTDA;
 import uade.tpo.tda.LibrosAutorTDA;
 
 public class AutorTDAImpl implements AutorTDA {
-	private Autor raiz;
+
+	class NodoAutor {
+		String nombre;
+		LibrosAutorTDA libros;
+		AutorTDA hi;
+		AutorTDA hd;
+	}
+
+	private NodoAutor raiz;
 
 	public void Inicializar() {
 		raiz = null;
-
 	}
 
 	public void Agregar(String nombreAutor) {
-		if (raiz == null) {
-			raiz = new Autor();
-			raiz.setNombre(nombreAutor);
-			raiz.setLibros(new LibrosAutorTDAImpl());
-			raiz.getLibros().Inicializar();
-			raiz.setHi(new AutorTDAImpl());
-			raiz.setHd(new AutorTDAImpl());
-			raiz.getHi().Inicializar();
-			raiz.getHd().Inicializar();
+		if (AutorVacio()) {
+			NodoAutor autor = new NodoAutor();
+			autor.nombre = nombreAutor;
+			autor.libros = new LibrosAutorTDAImpl();
+			autor.libros.Inicializar();
+			autor.hi = new AutorTDAImpl();
+			autor.hd = new AutorTDAImpl();
+			autor.hi.Inicializar();
+			autor.hd.Inicializar();
 		} else {
-			if (raiz.getNombre().compareTo(nombreAutor) > 0) {
-				raiz.getHi().Agregar(nombreAutor);
+			if (raiz.nombre.compareTo(nombreAutor) > 0) {
+				raiz.hi.Agregar(nombreAutor);
 			} else {
-				raiz.getHd().Agregar(nombreAutor);
+				raiz.hd.Agregar(nombreAutor);
 			}
 		}
 	}
 
 	public AutorTDA HijoIzquierdo() {
-		return raiz.getHi();
+		return raiz.hi;
 	}
 
 	public AutorTDA HijoDerecho() {
-		return raiz.getHd();
+		return raiz.hd;
 	}
 
 	public void Eliminar(String nombreAutor) {
-		if (raiz != null) {
-			if (raiz.getNombre().equals(nombreAutor) && raiz.getHi().AutorVacio() && raiz.getHd().AutorVacio()) {
+		if (!AutorVacio()) {
+			if (raiz.nombre.equals(nombreAutor) && raiz.hi.AutorVacio()
+					&& raiz.hd.AutorVacio()) {
 				raiz = null;
 			} else {
-				if (raiz.getNombre().equals(nombreAutor) && !raiz.getHd().AutorVacio()) {
-					raiz = Mayor(raiz.getHi());
-					raiz.getHi().Eliminar(raiz.getNombre());
+				if (raiz.nombre.equals(nombreAutor) && !raiz.hi.AutorVacio()) {
+					raiz = mayor((AutorTDAImpl) raiz.hi);
+					raiz.hi.Eliminar(raiz.nombre);
+				} else if (raiz.nombre.equals(nombreAutor)
+						&& !raiz.hd.AutorVacio()) {
+					raiz = menor((AutorTDAImpl) raiz.hd);
+					raiz.hd.Eliminar(raiz.nombre);
 				} else {
-					if (raiz.getNombre().equals(nombreAutor) && !raiz.getHd().AutorVacio()) {
-						raiz = Menor(raiz.getHd());
-						raiz.getHd().Eliminar(raiz.getNombre());
+					if (raiz.nombre.compareTo(nombreAutor) > 0) {
+						raiz.hi.Eliminar(nombreAutor);
 					} else {
-						if (raiz.getNombre().compareTo(nombreAutor) > 0) {
-							raiz.getHi().Eliminar(nombreAutor);
-						} else {
-							raiz.getHd().Eliminar(nombreAutor);
-						}
+						raiz.hd.Eliminar(nombreAutor);
 					}
 				}
 			}
 		}
-
 	}
 
-	private Autor Mayor(AutorTDA autor) {
+	private NodoAutor mayor(AutorTDAImpl autor) {
 		if (autor.HijoDerecho().AutorVacio()) {
-			return autor.Raiz();
+			return autor.raiz;
 		} else {
-			return Mayor(autor.HijoIzquierdo());
+			return mayor((AutorTDAImpl) autor.HijoIzquierdo());
 		}
 	}
 
-	private Autor Menor(AutorTDA autor) {
+	private NodoAutor menor(AutorTDAImpl autor) {
 		if (autor.HijoIzquierdo().AutorVacio()) {
-			return autor.Raiz();
+			return autor.raiz;
 		} else {
-			return Menor(autor.HijoDerecho());
+			return mayor((AutorTDAImpl) autor.HijoDerecho());
 		}
-	}
-
-	public Autor Raiz() {
-		return raiz;
 	}
 
 	public boolean AutorVacio() {
 		return raiz == null;
 	}
 
-	public void AgregarLibro(String nombreAutor, String tituloLibro, float precio) {
-		Autor aux = BuscarAutor(this, nombreAutor);
-		aux.getLibros().Agregar(tituloLibro, precio);
+	public void AgregarLibro(String nombreAutor, String tituloLibro,
+			float precio) {
+		NodoAutor aux = buscarAutor(this, nombreAutor);
+		aux.libros.Agregar(tituloLibro, precio);
 
 	}
 
-	private Autor BuscarAutor(AutorTDA autorTDA, String nombreAutor) {
+	private NodoAutor buscarAutor(AutorTDAImpl autorTDA, String nombreAutor) {
 		if (autorTDA.AutorVacio()) {
 			return null;
 		} else {
-			if (autorTDA.Raiz().getNombre().equals(nombreAutor)) {
-				return autorTDA.Raiz();
+			if (autorTDA.raiz.nombre.equals(nombreAutor)) {
+				return autorTDA.raiz;
 			} else {
-				if (autorTDA.Raiz().getNombre().compareTo(nombreAutor) > 0) {
-					return BuscarAutor(autorTDA.HijoIzquierdo(), nombreAutor);
+				if (autorTDA.raiz.nombre.compareTo(nombreAutor) > 0) {
+					return buscarAutor((AutorTDAImpl) autorTDA.HijoIzquierdo(),
+							nombreAutor);
 				} else {
-					return BuscarAutor(autorTDA.HijoDerecho(), nombreAutor);
+					return buscarAutor((AutorTDAImpl) autorTDA.HijoDerecho(),
+							nombreAutor);
 				}
 			}
 		}
 	}
 
 	public LibrosAutorTDA GetLibros(String nombreAutor) {
-		Autor aux = BuscarAutor(this, nombreAutor); // Como el autor tiene que
-													// existir no lo chequeo.
-		return aux.getLibros();
+		// Como el autor tiene que existir no lo chequeo
+		NodoAutor aux = buscarAutor(this, nombreAutor);
+		return aux.libros;
+	}
+
+	public Autor obtenerAutor() {
+		Autor autor = new Autor();
+		autor.setNombre(raiz.nombre);
+		return autor;
 	}
 }

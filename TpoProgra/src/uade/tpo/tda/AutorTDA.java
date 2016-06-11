@@ -40,11 +40,11 @@ public interface AutorTDA {
 	public void Eliminar(String nombreAutor);
 
 	/**
-	 * Devuelve el nombre del autor que se encuentra en la raiz<br>
+	 * Devuelve una instancia del objeto Autor<br>
 	 * PRE: Estructura inicializada y no vacia<br>
 	 * POS: -
 	 */
-	public Autor Raiz();
+	public Autor obtenerAutor();
 
 	/**
 	 * Determina si la estructura se encuentra vacia o no. TRUE: estructura

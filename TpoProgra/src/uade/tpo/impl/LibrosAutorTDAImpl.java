@@ -66,7 +66,7 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 	}
 
 	public void Eliminar(String nombre) {
-		if (raiz != null) {
+		if (!LibroVacio()) {
 			if (raiz.titulo.equals(nombre) && raiz.hi.LibroVacio()
 					&& raiz.hd.LibroVacio()) {
 				raiz = null;
