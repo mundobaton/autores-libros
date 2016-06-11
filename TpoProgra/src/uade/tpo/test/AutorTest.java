@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import uade.tpo.impl.AutorTDAImpl;
-import uade.tpo.impl.LibrosAutorTDAImpl;
 import uade.tpo.tda.AutorTDA;
-import uade.tpo.tda.LibrosAutorTDA;
 
 public class AutorTest {
 

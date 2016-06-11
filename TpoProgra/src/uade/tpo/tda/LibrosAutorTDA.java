@@ -40,17 +40,17 @@ public interface LibrosAutorTDA {
 	public void Eliminar(String nombre);
 
 	/**
-	 * Devuelve un objeto libro que se encuentra en la raiz<br>
-	 * PRE: Estructura inicializada y no vacia<br>
-	 * POS: -
-	 */
-	public Libro Raiz();
-
-	/**
 	 * Determina si la estructura se encuentra vacia o no. TRUE: estructura
 	 * vacia, FALSE: no vacia.<br>
 	 * PRE: Estructura inicializada<br>
 	 * POS: -
 	 */
 	public boolean LibroVacio();
+	
+	/**
+	 * Devuelve un objeto del tipo libro<br>
+	 * PRE: Estructura inicializada y no vacia<br>
+	 * POS: -
+	 */
+	public Libro obtenerLibro();
 }
