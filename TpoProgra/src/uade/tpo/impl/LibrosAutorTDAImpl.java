@@ -6,42 +6,10 @@ import uade.tpo.tda.LibrosAutorTDA;
 public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 
 	class NodoLibro {
-		private float precio;
-		private String titulo;
-		private LibrosAutorTDA hi;
-		private LibrosAutorTDA hd;
-
-		public float getPrecio() {
-			return precio;
-		}
-
-		public void setPrecio(float precio) {
-			this.precio = precio;
-		}
-
-		public String getTitulo() {
-			return titulo;
-		}
-
-		public void setTitulo(String titulo) {
-			this.titulo = titulo;
-		}
-
-		public LibrosAutorTDA getHi() {
-			return hi;
-		}
-
-		public void setHi(LibrosAutorTDA hi) {
-			this.hi = hi;
-		}
-
-		public LibrosAutorTDA getHd() {
-			return hd;
-		}
-
-		public void setHd(LibrosAutorTDA hd) {
-			this.hd = hd;
-		}
+		float precio;
+		String titulo;
+		LibrosAutorTDA hi;
+		LibrosAutorTDA hd;
 	}
 
 	private NodoLibro raiz;
@@ -53,18 +21,18 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 	public void Agregar(String nombre, float precio) {
 		if (LibroVacio()) {
 			NodoLibro libro = new NodoLibro();
-			libro.setTitulo(nombre);
-			libro.setPrecio(precio);
-			libro.setHd(new LibrosAutorTDAImpl());
-			libro.setHi(new LibrosAutorTDAImpl());
-			libro.getHd().Inicializar();
-			libro.getHi().Inicializar();
+			libro.titulo = nombre;
+			libro.precio = precio;
+			libro.hd = new LibrosAutorTDAImpl();
+			libro.hi = new LibrosAutorTDAImpl();
+			libro.hd.Inicializar();
+			libro.hi.Inicializar();
 			raiz = libro;
 		} else {
-			if (raiz.getPrecio() > precio) {
-				raiz.getHi().Agregar(nombre, precio);
+			if (raiz.precio > precio) {
+				raiz.hi.Agregar(nombre, precio);
 			} else {
-				raiz.getHd().Agregar(nombre, precio);
+				raiz.hd.Agregar(nombre, precio);
 			}
 		}
 	}
@@ -73,8 +41,8 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 		if (libroTDA.LibroVacio()) {
 			return null;
 		} else {
-			if (libroTDA.Raiz().getTitulo().equals(nombre)) {
-				return libroTDA.Raiz();
+			if (libroTDA.raiz.titulo.equals(nombre)) {
+				return libroTDA.raiz;
 			} else {
 				NodoLibro lib = null;
 				lib = buscarLibro((LibrosAutorTDAImpl) libroTDA.HijoDerecho(),
@@ -90,33 +58,31 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 	}
 
 	public LibrosAutorTDA HijoIzquierdo() {
-		return raiz.getHi();
+		return raiz.hi;
 	}
 
 	public LibrosAutorTDA HijoDerecho() {
-		return raiz.getHd();
+		return raiz.hd;
 	}
 
 	public void Eliminar(String nombre) {
 		if (raiz != null) {
-			if (raiz.getTitulo().equals(nombre) && raiz.getHi().LibroVacio()
-					&& raiz.getHd().LibroVacio()) {
+			if (raiz.titulo.equals(nombre) && raiz.hi.LibroVacio()
+					&& raiz.hd.LibroVacio()) {
 				raiz = null;
 			} else {
-				if (raiz.getTitulo().equals(nombre)
-						&& !raiz.getHi().LibroVacio()) {
-					raiz = mayor((LibrosAutorTDAImpl) raiz.getHi());
-					raiz.getHi().Eliminar(raiz.getTitulo());
-				} else if (raiz.getTitulo().equals(nombre)
-						&& !raiz.getHd().LibroVacio()) {
-					raiz = menor((LibrosAutorTDAImpl) raiz.getHd());
-					raiz.getHd().Eliminar(raiz.getTitulo());
+				if (raiz.titulo.equals(nombre) && !raiz.hi.LibroVacio()) {
+					raiz = mayor((LibrosAutorTDAImpl) raiz.hi);
+					raiz.hi.Eliminar(raiz.titulo);
+				} else if (raiz.titulo.equals(nombre) && !raiz.hd.LibroVacio()) {
+					raiz = menor((LibrosAutorTDAImpl) raiz.hd);
+					raiz.hd.Eliminar(raiz.titulo);
 				} else {
 					NodoLibro lib = buscarLibro(this, nombre);
-					if (raiz.getPrecio() > lib.getPrecio()) {
-						raiz.getHi().Eliminar(nombre);
+					if (raiz.precio > lib.precio) {
+						raiz.hi.Eliminar(nombre);
 					} else {
-						raiz.getHd().Eliminar(nombre);
+						raiz.hd.Eliminar(nombre);
 					}
 				}
 			}
@@ -125,7 +91,7 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 
 	private NodoLibro mayor(LibrosAutorTDAImpl libro) {
 		if (libro.HijoDerecho().LibroVacio()) {
-			return libro.Raiz();
+			return libro.raiz;
 		} else {
 			return mayor((LibrosAutorTDAImpl) libro.HijoDerecho());
 		}
@@ -134,24 +100,20 @@ public class LibrosAutorTDAImpl implements LibrosAutorTDA {
 
 	private NodoLibro menor(LibrosAutorTDAImpl libro) {
 		if (libro.HijoIzquierdo().LibroVacio()) {
-			return libro.Raiz();
+			return libro.raiz;
 		} else {
 			return menor((LibrosAutorTDAImpl) libro.HijoIzquierdo());
 		}
 	}
 
-	private NodoLibro Raiz() {
-		return raiz;
-	}
-
 	public boolean LibroVacio() {
 		return raiz == null;
 	}
-	
+
 	public Libro obtenerLibro() {
 		Libro lib = new Libro();
-		lib.setPrecio(raiz.getPrecio());
-		lib.setTitulo(raiz.getTitulo());
+		lib.setPrecio(raiz.precio);
+		lib.setTitulo(raiz.titulo);
 		return lib;
 	}
 
