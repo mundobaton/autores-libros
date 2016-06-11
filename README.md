@@ -11,4 +11,5 @@ Trabajo Obligatorio Progra 2
 3.2 Seleccionar el tab Libraries<br>
 3.3 Seleccionar el boton Add Library > JRE Library<br>
 3.4 Seleccionar Workspace default > Finish<br>
-4. Happy coding!
+4. Java Build Path > Libraries  > Add Jars > TPO Progra > TDAS_Implementados<br>
+5. Happy coding!
