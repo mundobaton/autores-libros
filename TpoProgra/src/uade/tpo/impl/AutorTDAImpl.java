@@ -29,6 +29,7 @@ public class AutorTDAImpl implements AutorTDA {
 			autor.hd = new AutorTDAImpl();
 			autor.hi.Inicializar();
 			autor.hd.Inicializar();
+			raiz = autor;
 		} else {
 			if (raiz.nombre.compareTo(nombreAutor) > 0) {
 				raiz.hi.Agregar(nombreAutor);
