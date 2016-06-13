@@ -17,7 +17,7 @@ public class App {
 
 	private static final String BULK_FILE_NAME = "bulk_load.txt";
 
-	Catalogo catalogo;
+	private Catalogo catalogo;
 
 	public static void main(String[] args) throws IOException {
 		App app = new App();
