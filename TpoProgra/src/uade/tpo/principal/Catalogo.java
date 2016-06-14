@@ -37,16 +37,16 @@ public class Catalogo {
 		return buscarLibro(libros, libro.titulo);
 	}
 	
-	private boolean buscarLibro(LibrosAutorTDA libros, String titulo){
-		
+	private boolean buscarLibro(LibrosAutorTDA libros, String titulo){	
 		if(libros.LibroVacio()){
 			return false;
-		}else if(!libros.HijoIzquierdo().obtenerLibro().equals(titulo)){
-			return buscarLibro(libros.HijoIzquierdo(), titulo);
-		}else if(!libros.HijoDerecho().obtenerLibro().equals(titulo)){
-			return buscarLibro(libros.HijoDerecho(),titulo);
-		}else{
-			return true;
+		}else{ 
+			Libro lib = libros.obtenerLibro();
+			if(lib.titulo.equals(titulo)){
+				return true;
+			}else{
+				return buscarLibro(libros.HijoIzquierdo(), titulo) || buscarLibro(libros.HijoDerecho(), titulo);
+			}
 		}
 	}
 
