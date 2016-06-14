@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import TDA.ConjuntoTDA;
 import uade.tpo.model.Autor;
 import uade.tpo.model.Libro;
 
@@ -64,14 +65,13 @@ public class App {
 
 		agregarDataCatalogo(data);
 		
-		Autor autor = new Autor();
-		autor.setNombre("Eduardo Galeano");
-		Libro libro = new Libro();
-		libro.setTitulo("China");
-		float precio = new Float(10.00).floatValue();
-		libro.setPrecio(precio);
-	
-		System.out.println(catalogo.libroPertenece(autor, libro));
+		ConjuntoTDA conj = catalogo.autoresLibrosMenorPrecioEnRango(new Float(0.00).floatValue(), new Float(100.00).floatValue());
+		while(!conj.conjuntoVacio()){
+			Autor aut = (Autor) conj.elegir();
+			System.out.println(aut.nombre);
+			conj.sacar(aut);
+		}
+		
 	}
 
 	private void agregarDataCatalogo(Set data) {
