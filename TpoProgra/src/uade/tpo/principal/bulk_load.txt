@@ -1,4 +1,4 @@
-Juan Gelman=Violin y otras cuestiones,130;El juego en que andamos,410.55;Velorio del solo,24.99;Gotan,59.40;Colera Buey,14.20;Relaciones,190
+Juan Gelman=Violin y otras cuestiones,13;El juego en que andamos,410.55;Velorio del solo,24.99;Gotan,59.40;Colera Buey,14.20;Relaciones,190
 Ernesto Kahan=Liberacion Carajo,320.10;Ultimas gotas en la arena,115.10
 Nicanor Parra=Cancionero sin nombre,75;Poemas y antipoemas,110.10;La cueca larga,65.90;Los profesores,41.50
 Gabriel Garcia Marquez=La hojarasca,30.10;El coronel no tiene quien le escriba,250;Cien anios de Soledad,120.80

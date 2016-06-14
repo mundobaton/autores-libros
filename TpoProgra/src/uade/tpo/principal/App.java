@@ -65,13 +65,6 @@ public class App {
 
 		agregarDataCatalogo(data);
 		
-		ConjuntoTDA conj = catalogo.autoresLibrosMenorPrecioEnRango(new Float(0.00).floatValue(), new Float(100.00).floatValue());
-		while(!conj.conjuntoVacio()){
-			Autor aut = (Autor) conj.elegir();
-			System.out.println(aut.nombre);
-			conj.sacar(aut);
-		}
-		
 	}
 
 	private void agregarDataCatalogo(Set data) {
