@@ -63,6 +63,15 @@ public class App {
 		reader.close();
 
 		agregarDataCatalogo(data);
+		
+		Autor autor = new Autor();
+		autor.setNombre("Eduardo Galeano");
+		Libro libro = new Libro();
+		libro.setTitulo("China");
+		float precio = new Float(10.00).floatValue();
+		libro.setPrecio(precio);
+	
+		System.out.println(catalogo.libroPertenece(autor, libro));
 	}
 
 	private void agregarDataCatalogo(Set data) {

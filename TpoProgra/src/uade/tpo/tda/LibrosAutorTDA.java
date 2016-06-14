@@ -5,51 +5,51 @@ import uade.tpo.model.Libro;
 public interface LibrosAutorTDA {
 
 	/**
-	 * Inicializa la estructura<br>
-	 * PRE: -<br>
+	 * Inicializa la estructura
+	 * PRE: -
 	 * POS: Estructura inicializada
 	 */
 	public void Inicializar();
 
 	/**
-	 * Agrega un libro ordenado por precio.<br>
-	 * PRE: Estructura inicializada. El libro no debe existir.<br>
+	 * Agrega un libro ordenado por precio.
+	 * PRE: Estructura inicializada. El libro no debe existir.
 	 * POS: Estructura modificada en un (1) elemento mas
 	 */
 	public void Agregar(String nombre, float precio);
 
 	/**
-	 * Devuelve el hijo izquierdo del árbol de libros<br>
-	 * PRE: Estructura inicializada y no vacia<br>
+	 * Devuelve el hijo izquierdo del arbol de libros
+	 * PRE: Estructura inicializada y no vacia
 	 * POS: -
 	 */
 	public LibrosAutorTDA HijoIzquierdo();
 
 	/**
-	 * Devuelve el hijo derecho del árbol de libros<br>
-	 * PRE: Estructura inicializada y no vacia<br>
+	 * Devuelve el hijo derecho del arbol de libros
+	 * PRE: Estructura inicializada y no vacia
 	 * POS: -
 	 */
 	public LibrosAutorTDA HijoDerecho();
 
 	/**
-	 * Elimina un libro<br>
-	 * PRE: Estructura inicializada y no vacia.<br>
+	 * Elimina un libro
+	 * PRE: Estructura inicializada y no vacia.
 	 * POS: Estructura modificada en un (1) elemento menos.
 	 */
 	public void Eliminar(String nombre);
 
 	/**
 	 * Determina si la estructura se encuentra vacia o no. TRUE: estructura
-	 * vacia, FALSE: no vacia.<br>
-	 * PRE: Estructura inicializada<br>
+	 * vacia, FALSE: no vacia.
+	 * PRE: Estructura inicializada
 	 * POS: -
 	 */
 	public boolean LibroVacio();
 	
 	/**
-	 * Devuelve un objeto del tipo libro<br>
-	 * PRE: Estructura inicializada y no vacia<br>
+	 * Devuelve un objeto del tipo libro
+	 * PRE: Estructura inicializada y no vacia
 	 * POS: -
 	 */
 	public Libro obtenerLibro();

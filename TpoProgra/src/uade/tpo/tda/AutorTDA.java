@@ -5,14 +5,14 @@ import uade.tpo.model.Autor;
 public interface AutorTDA {
 
 	/**
-	 * Inicializa la estructura<br>
-	 * PRE: -<br>
+	 * Inicializa la estructura
+	 * PRE: -
 	 * POS: Estructura inicializada
 	 */
 	public void Inicializar();
 
 	/**
-	 * Agrega un autor<br>
+	 * Agrega un autor
 	 * PRE: Estructura inicializada. El autor no debe existir.
 	 * POS: Estructura modificada en un (1) elemento mas
 	 */
