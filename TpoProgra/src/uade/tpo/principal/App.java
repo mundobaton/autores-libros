@@ -63,7 +63,11 @@ public class App {
 		bufferedReader.close();
 		reader.close();
 
-		agregarDataCatalogo(data);
+	//	agregarDataCatalogo(data);
+	//	Autor a = new Autor();
+	//	a.setNombre("Eduardo Galeano");
+		
+	//	System.out.println(catalogo.libroPerteneceAutorMenorPrecio(a,"China",new Float(10).floatValue()));
 		
 	}
 

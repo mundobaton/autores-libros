@@ -15,7 +15,6 @@ public class Catalogo {
 
 	public Catalogo() {
 		this.autores = new AutorTDAImpl();
-
 	}
 
 	public void agregarAutor(Autor autor) {
@@ -35,8 +34,7 @@ public class Catalogo {
 		return auts;
 	}
 
-	private void agregarAutores(ConjuntoTDA c, AutorTDA autor, float pmin,
-			float pmax) {
+	private void agregarAutores(ConjuntoTDA c, AutorTDA autor, float pmin, float pmax) {
 
 		if (!autor.AutorVacio()) {
 			AutorTDA hi = autor.HijoIzquierdo();
@@ -72,6 +70,33 @@ public class Catalogo {
 			return libro;
 		} else {
 			return buscarLibroMenorPrecio(libro.HijoIzquierdo());
+		}
+	}
+	
+	//Determinar si un autor dado tiene un libro dado, 
+	//cuyo precio sea menor a uno dado.
+	public boolean libroPerteneceAutorMenorPrecio(Autor autor, String titulo, float precio){
+		//Buscamos los libros del autor
+		LibrosAutorTDA libros = this.autores.GetLibros(autor.nombre);
+		//Verificamos que exista el libro con un precio inferior al dado
+		return buscarLibroPorTituloMenorPrecio(libros,titulo,precio);
+	}
+	
+	private boolean buscarLibroPorTituloMenorPrecio(LibrosAutorTDA libros, String titulo, float precio) {
+		//Si no hay libros devolvemos false
+		if (libros.LibroVacio()) {
+			return false;
+		} else {
+			//Obtenemos el libro
+			Libro lib = libros.obtenerLibro();
+			//Si el libro es el que estamos buscando y el precio del mismo es menor al precio dado, devolvemos true
+			if (lib.titulo.equals(titulo) && lib.precio < precio) {
+				return true;
+			} else {
+				//Seguimos buscando
+				return buscarLibroPorTituloMenorPrecio(libros.HijoIzquierdo(), titulo, precio)
+						|| buscarLibroPorTituloMenorPrecio(libros.HijoDerecho(), titulo, precio);
+			}
 		}
 	}
 
