@@ -1,13 +1,12 @@
 package uade.tpo.principal;
 
-import Implementaciones.Conjunto;
-import TDA.ConjuntoTDA;
 import uade.tpo.impl.AutorTDAImpl;
-import uade.tpo.impl.LibrosAutorTDAImpl;
 import uade.tpo.model.Autor;
 import uade.tpo.model.Libro;
 import uade.tpo.tda.AutorTDA;
 import uade.tpo.tda.LibrosAutorTDA;
+import Implementaciones.Conjunto;
+import TDA.ConjuntoTDA;
 
 public class Catalogo {
 
