@@ -63,7 +63,8 @@ public class App {
 		bufferedReader.close();
 		reader.close();
 
-	//	agregarDataCatalogo(data);
+		agregarDataCatalogo(data);
+		
 	//	Autor a = new Autor();
 	//	a.setNombre("Eduardo Galeano");
 		
