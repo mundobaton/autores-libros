@@ -115,10 +115,9 @@ public class AutorTDAImpl implements AutorTDA {
 		}
 	}
 
-	public LibrosAutorTDA GetLibros(String nombreAutor) {
+	public LibrosAutorTDA GetLibros() {
 		// Como el autor tiene que existir no lo chequeo
-		NodoAutor aux = buscarAutor(this, nombreAutor);
-		return aux.libros;
+		return this.raiz.libros;
 	}
 
 	public Autor obtenerAutor() {

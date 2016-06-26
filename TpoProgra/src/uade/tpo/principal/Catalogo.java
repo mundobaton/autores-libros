@@ -33,30 +33,22 @@ public class Catalogo {
 		return auts;
 	}
 
-	private void agregarAutores(ConjuntoTDA c, AutorTDA autor, float pmin, float pmax) {
+	private void agregarAutores(ConjuntoTDA c, AutorTDA autor, float pmin,
+			float pmax) {
 
 		if (!autor.AutorVacio()) {
+			LibrosAutorTDA menorRaiz = buscarLibroMenorPrecio(autor.GetLibros());
+			if (menorRaiz.obtenerLibro().precio >= pmin
+					&& menorRaiz.obtenerLibro().precio <= pmax) {
+				c.agregar(autor);
+			}
 			AutorTDA hi = autor.HijoIzquierdo();
 
 			if (!hi.AutorVacio()) {
-				LibrosAutorTDA lhi = hi.GetLibros(hi.obtenerAutor().nombre);
-				LibrosAutorTDA menorHi = buscarLibroMenorPrecio(lhi);
-				if (menorHi.obtenerLibro().precio >= pmin
-						&& menorHi.obtenerLibro().precio <= pmax) {
-					c.agregar(hi.obtenerAutor());
-				}
 				agregarAutores(c, hi, pmin, pmax);
 			}
 			AutorTDA hd = autor.HijoDerecho();
 			if (!hd.AutorVacio()) {
-				LibrosAutorTDA lhd = hd.GetLibros(hd.obtenerAutor().nombre);
-
-				LibrosAutorTDA menorHd = buscarLibroMenorPrecio(lhd);
-
-				if (menorHd.obtenerLibro().precio >= pmin
-						&& menorHd.obtenerLibro().precio <= pmax) {
-					c.agregar(hd.obtenerAutor());
-				}
 				agregarAutores(c, hd, pmin, pmax);
 			}
 
@@ -71,39 +63,62 @@ public class Catalogo {
 			return buscarLibroMenorPrecio(libro.HijoIzquierdo());
 		}
 	}
-	
-	//Determinar si un autor dado tiene un libro dado, 
-	//cuyo precio sea menor a uno dado.
-	public boolean libroPerteneceAutorMenorPrecio(Autor autor, String titulo, float precio){
-		//Buscamos los libros del autor
-		LibrosAutorTDA libros = this.autores.GetLibros(autor.nombre);
-		//Verificamos que exista el libro con un precio inferior al dado
-		return buscarLibroPorTituloMenorPrecio(libros,titulo,precio);
+
+	// Determinar si un autor dado tiene un libro dado,
+	// cuyo precio sea menor a uno dado.
+	public boolean libroPerteneceAutorMenorPrecio(Autor autor, String titulo,
+			float precio) {
+		// Buscamos los libros del autor
+		LibrosAutorTDA libros = buscarAutor(this.autores, autor.nombre)
+				.GetLibros();
+		// Verificamos que exista el libro con un precio inferior al dado
+		return buscarLibroPorTituloMenorPrecio(libros, titulo, precio);
 	}
-	
-	private boolean buscarLibroPorTituloMenorPrecio(LibrosAutorTDA libros, String titulo, float precio) {
-		//Si no hay libros devolvemos false
+
+	private boolean buscarLibroPorTituloMenorPrecio(LibrosAutorTDA libros,
+			String titulo, float precio) {
+		// Si no hay libros devolvemos false
 		if (libros.LibroVacio()) {
 			return false;
 		} else {
-			//Obtenemos el libro
+			// Obtenemos el libro
 			Libro lib = libros.obtenerLibro();
-			//Si el libro es el que estamos buscando y el precio del mismo es menor al precio dado, devolvemos true
+			// Si el libro es el que estamos buscando y el precio del mismo es
+			// menor al precio dado, devolvemos true
 			if (lib.titulo.equals(titulo) && lib.precio < precio) {
 				return true;
 			} else {
-				//Seguimos buscando
-				return buscarLibroPorTituloMenorPrecio(libros.HijoIzquierdo(), titulo, precio)
-						|| buscarLibroPorTituloMenorPrecio(libros.HijoDerecho(), titulo, precio);
+				// Seguimos buscando
+				return buscarLibroPorTituloMenorPrecio(libros.HijoIzquierdo(),
+						titulo, precio)
+						|| buscarLibroPorTituloMenorPrecio(
+								libros.HijoDerecho(), titulo, precio);
 			}
 		}
 	}
 
-	// Determina si un determinado título de libro corresponde a un
+	// Determina si un determinado titulo de libro corresponde a un
 	// determinado autor.
 	public boolean libroPertenece(Autor autor, Libro libro) {
-		LibrosAutorTDA libros = this.autores.GetLibros(autor.nombre);
+		LibrosAutorTDA libros = buscarAutor(this.autores, autor.nombre)
+				.GetLibros();
 		return buscarLibroPorTitulo(libros, libro.titulo);
+	}
+
+	private AutorTDA buscarAutor(AutorTDA autorTDA, String nombreAutor) {
+		if (autorTDA.AutorVacio()) {
+			return null;
+		} else {
+			if (autorTDA.obtenerAutor().nombre.equals(nombreAutor)) {
+				return autorTDA;
+			} else {
+				if (autorTDA.obtenerAutor().nombre.compareTo(nombreAutor) > 0) {
+					return buscarAutor(autorTDA.HijoIzquierdo(), nombreAutor);
+				} else {
+					return buscarAutor(autorTDA.HijoDerecho(), nombreAutor);
+				}
+			}
+		}
 	}
 
 	private boolean buscarLibroPorTitulo(LibrosAutorTDA libros, String titulo) {

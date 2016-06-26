@@ -67,5 +67,5 @@ public interface AutorTDA {
 	 * PRE: Estructura inicializada y no vacia. El autor debe existir.
 	 * POS: -
 	 */
-	public LibrosAutorTDA GetLibros(String nombreAutor);
+	public LibrosAutorTDA GetLibros();
 }
