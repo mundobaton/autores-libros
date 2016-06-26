@@ -63,7 +63,7 @@ public interface AutorTDA {
 			float precio);
 
 	/**
-	 * Devuelve una estructura (arbol) con los libros del autor.
+	 * Devuelve una estructura (arbol) con los libros del autor que se encuentra en la raiz.
 	 * PRE: Estructura inicializada y no vacia. El autor debe existir.
 	 * POS: -
 	 */
